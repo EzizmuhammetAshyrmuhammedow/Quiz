@@ -2,28 +2,33 @@
 
 :root {
     --dark-grey: #121212;
+    --hr: #4c4a48;
     --light-gray: #1b1919;
     --primary: #bb86fc;
-    --secondary: #03dac5;
+    --success: #498205;
     --text: #ffffff;
-    --error: #B00020;
+    --error: #b00020;
 }
+
 html {
     background-color: var(--dark-grey);
     color: var(--text);
 }
+
 body {
     font-family: "Poppins";
     font-weight: 400;
 }
+
 .parent-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
+
 .container {
-    width: 1000px;
+    width: 800px;
     height: auto;
     background-color: var(--light-gray);
     border-radius: 10px;
@@ -32,16 +37,22 @@ body {
     justify-content: center;
     padding: 10px;
 }
+
 hr {
     width: 100%;
-    border-color: var(--dark-grey);
+    border-color: var(--hr);
 }
+
 .button-div {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    margin: 10px;
+
     .q-btn {
         color: var(--text);
-        text-align: left;
+        text-align: center;
         background-color: transparent;
         border: 1px solid rgba(161, 155, 155, 0.5);
         border-radius: 3px;
@@ -50,34 +61,70 @@ hr {
         cursor: pointer;
         transition: all 0.3s;
     }
+
+    .q-btn.correct {
+        background-color: var(--success);
+        color: white;
+      }
+      
     .q-btn:hover {
-        background-color: var(--secondary);
+        background-color: white;
         color: black;
         border: 1px solid rgba(45, 43, 43, 0.5);
     }
+
     .q-btn.disabled {
         opacity: 0.9;
+        cursor: no-drop;
         pointer-events: none;
-      }
+    }
+
     .q-btn:not(:last-child) {
         margin-bottom: 10px;
     }
+    .q-btn.clicked{
+        background-color: white;
+        color: black;
+    }
 }
+
 .next-btn {
+    display: none;
     color: var(--text);
     text-align: center;
     background-color: var(--primary);
     border: 1px solid rgba(161, 155, 155, 0.5);
     border-radius: 3px;
-    width: 60px;
+    width: auto;
+    max-width: 200px;
     height: 30px;
     margin-top: 10px;
     box-shadow: 10px 10px 10px var(black);
     cursor: pointer;
 }
-.success{
-    background-color: var(--secondary) !important;
+.submit-btn{
+    display: none;
+    color: var(--text);
+    text-align: center;
+    background-color: var(--dark-grey);
+    border: 1px solid rgba(161, 155, 155, 0.5);
+    border-radius: 3px;
+    width: auto;
+    max-width: 200px;
+    height: 30px;
+    margin-top: 10px;
+    box-shadow: 10px 10px 10px var(black);
+    cursor: pointer;
 }
-.failure{
+
+.success {
+    background-color: var(--success) !important;
+}
+
+.failure {
     background-color: var(--error) !important;
+}
+:disabled{
+    cursor: default;
+    opacity: 0.9;
 }

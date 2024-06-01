@@ -1,0 +1,48 @@
+function showQuestion() {
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    question.innerHTML = questionNo + ". " + currentQuestion.question;
+
+    answerButtons.innerHTML = "";
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("q-btn");
+        button.dataset.correct = answer.correct; // Assigning correct answer to each button
+
+        button.addEventListener('click', () => {
+            // Display submit button
+            const submitBtn = document.createElement("button");
+            submitBtn.innerHTML = "Submit";
+            submitBtn.style.display = "block";
+            submitBtn.classList.add("submit-btn");
+            answerButtons.appendChild(submitBtn);
+
+            button.classList.add("clicked");
+
+            // When submit button is clicked, proceed
+            submitBtn.addEventListener('click', () => {
+                const isCorrect = button.dataset.correct === "true";
+                SelectAnswer(isCorrect);
+                button.classList.remove("clicked");
+            });
+        });
+
+        answerButtons.appendChild(button);
+    });
+}
+
+function SelectAnswer(isCorrect) {
+    const selectedBtn = answerButtons.querySelector(".submit-btn");
+    // Remove the submit button
+    answerButtons.removeChild(selectedBtn);
+
+    if (isCorrect) {
+        button.classList.add("success")
+        score++;
+    }
+    CurrentScore.innerHTML = `Current Score ${score}/4`;
+    nextButton.style.display = "block";
+}
